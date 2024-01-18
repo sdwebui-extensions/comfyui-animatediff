@@ -9,6 +9,7 @@ from comfy.utils import load_torch_file, calculate_parameters
 
 from .logger import logger
 from .motion_module import MotionWrapper
+from comfy.cli_args import args
 
 
 motion_modules: Dict[str, MotionWrapper] = {}
@@ -17,14 +18,14 @@ motion_loras: Dict[str, Dict[str, torch.Tensor]] = {}
 
 folder_paths.folder_names_and_paths["AnimateDiff"] = (
     [
-        os.path.join(folder_paths.models_dir, "AnimateDiff"),
+        os.path.join(os.path.dirname(args.data_dir), 'models', 'AnimateDiff') if args.just_ui else os.path.join(folder_paths.models_dir, "AnimateDiff"),
         os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "models"),
     ],
     folder_paths.supported_pt_extensions,
 )
 folder_paths.folder_names_and_paths["AnimateDiffLora"] = (
     [
-        os.path.join(folder_paths.models_dir, "AnimateDiffLora"),
+        os.path.join(os.path.dirname(args.data_dir), 'models', 'AnimateDiffLora') if args.just_ui else os.path.join(folder_paths.models_dir, "AnimateDiffLora"),
         os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "loras"),
     ],
     folder_paths.supported_pt_extensions,
