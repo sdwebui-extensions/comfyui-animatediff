@@ -31,6 +31,10 @@ folder_paths.folder_names_and_paths["AnimateDiffLora"] = (
     folder_paths.supported_pt_extensions,
 )
 
+if os.path.exists("/stable-diffusion-cache/models/AnimateDiff"):
+    folder_paths.add_model_folder_path("AnimateDiff", "/stable-diffusion-cache/models/AnimateDiff")
+    folder_paths.add_model_folder_path("AnimateDiffLora", "/stable-diffusion-cache/models/AnimateDiff")
+
 
 def get_available_models():
     return folder_paths.get_filename_list("AnimateDiff")
